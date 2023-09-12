@@ -122,8 +122,10 @@ public class Main {
     private static void displayAllUsers(UserService userService) {
         System.out.println("Displaying all users");
         User[] users = userService.getUsers();
-        for (User user : users) {
-            System.out.println(user);
+        if(users != null) {
+            for (User user : users) {
+                System.out.println(user);
+            }
         }
     }
 

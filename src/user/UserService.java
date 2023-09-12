@@ -6,30 +6,25 @@ public class UserService {
     private UserDAO userDAO;
 
     public UserService() {
-        userDAO = new UserDAO();
+        userDAO = new UserCsvAccessService();
     }
 
     public User[] getUsers() {
-       return userDAO.getUsers();
-    }
-
-    public boolean isValidUser(String userId) {
-        boolean isValid = false;
-        UUID uuid = UUID.fromString(userId);
-        User user = userDAO.getUserById(uuid);
-
-        if (user!=null) {
-            isValid = true;
-        }
-        return isValid;
+        return userDAO.getUsers();
     }
 
     public User getUser(String userId) throws UserNotFoundException {
         try {
             UUID uuid = UUID.fromString(userId);
-            User user = userDAO.getUserById(uuid);
-            if (user != null) {
-                return user;
+            User result = null;
+            User[] allUsers = userDAO.getUsers();
+            for (User user : allUsers) {
+                if (user.getUserId().equals(uuid)) {
+                    result = user;
+                }
+            }
+            if (result != null) {
+                return result;
             } else {
                 throw new UserNotFoundException("User: " + userId + " not found");
             }
