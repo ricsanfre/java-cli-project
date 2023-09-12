@@ -7,10 +7,10 @@ import java.util.UUID;
 
 public class CarService {
 
-    private CarDAO carDAO;
+    private final CarDAO carDAO;
 
-    public CarService() {
-        carDAO = new CarDAO();
+    public CarService(CarDAO carDAO) {
+        this.carDAO = carDAO;
     }
 
     public Car[] getAllCars() {
@@ -19,7 +19,7 @@ public class CarService {
 
     public Car getCarByRegNumber(String regNumber) throws CarNotFoundException {
         Car car = carDAO.getCarByRegNumber(regNumber);
-        if (car!=null) {
+        if (car != null) {
             return car;
         } else {
             //throw new CarNotFoundException("Car: " + regNumber + " not found");

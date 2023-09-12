@@ -11,12 +11,12 @@ import java.util.Arrays;
 import java.util.UUID;
 
 public class CarBookingService {
-    private CarBookingDAO carBookingDAO;
-    private CarService carService;
+    private final CarBookingDAO carBookingDAO;
+    private final CarService carService;
 
-    public CarBookingService() {
-        carService = new CarService();
-        carBookingDAO = new CarBookingDAO();
+    public CarBookingService(CarBookingDAO carBookingDAO, CarService carService) {
+        this.carService = carService;
+        this.carBookingDAO = carBookingDAO;
     }
 
     public CarBooking[] getAllBookings() {

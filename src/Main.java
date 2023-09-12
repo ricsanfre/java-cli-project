@@ -1,20 +1,22 @@
 import booking.CarBooking;
+import booking.CarBookingDAO;
 import booking.CarBookingService;
-import car.Car;
-import car.CarEngineType;
-import car.CarNotFoundException;
-import user.User;
-import user.UserNotFoundException;
-import user.UserService;
+import car.*;
+import user.*;
 
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        // Creating Objects
-        UserService userService = new UserService();
-        CarBookingService carBookingService = new CarBookingService();
+        // Creating Objects and dependency injection
+        CarBookingDAO carBookingDAO = new CarBookingDAO();
+        UserDAO userDAO = new UserCsvAccessService();
+        CarDAO carDAO = new CarDAO();
+        UserService userService = new UserService(userDAO);
+        CarService carService = new CarService(carDAO);
+        CarBookingService carBookingService = new CarBookingService(carBookingDAO, carService);
+
         Scanner cliScanner = new Scanner(System.in);
         // Main loop cli options
         boolean keepLooping = true;
