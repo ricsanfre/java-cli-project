@@ -1,10 +1,6 @@
 package car;
 
-import user.User;
-import user.UserNotFoundException;
-
 import java.util.List;
-import java.util.UUID;
 
 public class CarService {
 

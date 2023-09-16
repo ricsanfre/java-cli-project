@@ -7,7 +7,6 @@ import java.util.*;
 
 public class UserCsvAccessService implements UserDAO {
 
-    private final int DBCAPACITY = 10;
     @Override
     public List<User> getUsers() {
         List<User> users = new ArrayList<>();

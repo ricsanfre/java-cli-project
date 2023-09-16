@@ -4,18 +4,11 @@ import car.Car;
 import user.User;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.ListIterator;
 
 public class CarBookingDAO {
 
-    private List<CarBooking> db;
-    private final int DBCAPACITY = 10;
-    private int nextDbAvailableSlot= 0;
-    public CarBookingDAO() {
-        db = new ArrayList<>();
-    }
+    final private List<CarBooking> db = new ArrayList<>();
     public boolean saveCarBooking(CarBooking carBooking) {
         System.out.println("Saving new booking");
         return db.add(carBooking);
