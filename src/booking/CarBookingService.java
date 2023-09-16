@@ -7,8 +7,7 @@ import car.CarService;
 import user.User;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.UUID;
+import java.util.*;
 
 public class CarBookingService {
     private final CarBookingDAO carBookingDAO;
@@ -19,47 +18,44 @@ public class CarBookingService {
         this.carBookingDAO = carBookingDAO;
     }
 
-    public CarBooking[] getAllBookings() {
+    public List<CarBooking> getAllBookings() {
         return carBookingDAO.getAllCarBookings();
     }
 
-    public CarBooking[] getBookingsByUser(User user) {
+    public List<CarBooking> getBookingsByUser(User user) {
         return carBookingDAO.getBookingsByUser(user);
     }
 
-    public Car[] getAllAvailableCars() {
-        Car[] result = new Car[100];
-        int counter=0;
-        Car[] allCars = carService.getAllCars();
+    public List<Car> getAllAvailableCars() {
+        List<Car> result = new ArrayList<>();
+        List<Car> allCars = carService.getAllCars();
+
         for (Car car: allCars) {
             if (!isCarBooked(car)){
                 // Car is not already Booked
                 // add it to the list
-                result[counter]=car;
-                counter++;
+                result.add(car);
             }
         }
-        if (counter>0){
-            return Arrays.copyOf(result, counter);
+        if (!result.isEmpty()){
+            return result;
         } else {
             return null;
         }
     }
 
-    public Car[] getAvailableCarsPerType(CarEngineType carEngineType) {
-        Car[] result = new Car[100];
-        int counter=0;
-        Car[] allCars = carService.getAllCars();
+    public List<Car> getAvailableCarsPerType(CarEngineType carEngineType) {
+        List<Car> result = new ArrayList<>();
+        List<Car> allCars = carService.getAllCars();
         for (Car car: allCars) {
             if (!isCarBooked(car) && car.getCarType().equals(carEngineType)){
                 // Car is not already Booked and is of specific type
                 // add it to the list
-                result[counter]=car;
-                counter++;
+                result.add(car);
             }
         }
-        if (counter>0){
-            return Arrays.copyOf(result, counter);
+        if (!result.isEmpty()){
+            return result;
         } else {
             return null;
         }
@@ -73,7 +69,6 @@ public class CarBookingService {
             System.out.println("Creating new booking. regNum:" + regNumber + " userId: " + user.getUserId().toString());
             CarBooking booking = new CarBooking(UUID.randomUUID(), user, car, LocalDateTime.now());
             carBookingDAO.saveCarBooking(booking);
-
         }
     }
 
@@ -85,5 +80,4 @@ public class CarBookingService {
         }
         return result;
     }
-
 }

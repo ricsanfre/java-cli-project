@@ -1,5 +1,6 @@
 package user;
 
+import java.util.List;
 import java.util.UUID;
 
 public class UserService {
@@ -9,7 +10,7 @@ public class UserService {
         this.userDAO = userDAO;
     }
 
-    public User[] getUsers() {
+    public List<User> getUsers() {
         return userDAO.getUsers();
     }
 
@@ -17,7 +18,8 @@ public class UserService {
         try {
             UUID uuid = UUID.fromString(userId);
             User result = null;
-            User[] allUsers = userDAO.getUsers();
+            List<User> allUsers = userDAO.getUsers();
+
             for (User user : allUsers) {
                 if (user.getUserId().equals(uuid)) {
                     result = user;

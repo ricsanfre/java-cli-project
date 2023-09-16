@@ -4,6 +4,8 @@ import booking.CarBookingService;
 import car.*;
 import user.*;
 
+import java.util.List;
+import java.util.ListIterator;
 import java.util.Scanner;
 
 public class Main {
@@ -51,12 +53,13 @@ public class Main {
         try {
             User user = userService.getUser(userId);
             System.out.println("Listing Bookings for: " + userId);
-            CarBooking[] carBookings = carBookingService.getBookingsByUser(user);
+            List<CarBooking> carBookings = carBookingService.getBookingsByUser(user);
             if (carBookings == null) {
                 System.out.println("No Bookings found!");
             } else {
-                for (CarBooking carBooking : carBookings) {
-                    System.out.println(carBooking);
+                ListIterator<CarBooking> iterator = carBookings.listIterator();
+                while(iterator.hasNext()) {
+                    System.out.println(iterator.next());
                 }
             }
         } catch (UserNotFoundException  e) {
@@ -68,12 +71,13 @@ public class Main {
 
     private static void displayAllBookings(CarBookingService carBookingService) {
         System.out.println("Listing current Bookings...");
-        CarBooking[] carBookings = carBookingService.getAllBookings();
+        List<CarBooking> carBookings = carBookingService.getAllBookings();
         if (carBookings == null) {
             System.out.println("No Bookings found!");
         } else {
-            for (CarBooking carBooking : carBookings) {
-                System.out.println(carBooking);
+            ListIterator<CarBooking> iterator = carBookings.listIterator();
+            while(iterator.hasNext()) {
+                System.out.println(iterator.next());
             }
         }
     }
@@ -99,11 +103,11 @@ public class Main {
 
     private static void displayAllAvailableCars(CarBookingService carBookingService) {
         System.out.println("Displaying available cars:");
-        Car[] cars = carBookingService.getAllAvailableCars();
+        List<Car> cars = carBookingService.getAllAvailableCars();
         if (cars == null) {
             System.out.println("No Cars available!");
         } else {
-            for (Car car : cars) {
+            for (Car car: cars ) {
                 System.out.println(car);
             }
         }
@@ -111,11 +115,11 @@ public class Main {
 
     private static void displayElectricAvailableCars(CarBookingService carBookingService) {
         System.out.println("Displaying available electric cars:");
-        Car[] cars = carBookingService.getAvailableCarsPerType(CarEngineType.ELECTRIC);
+        List<Car> cars = carBookingService.getAvailableCarsPerType(CarEngineType.ELECTRIC);
         if (cars == null) {
             System.out.println("No Cars available!");
         } else {
-            for (Car car : cars) {
+            for (Car car: cars ) {
                 System.out.println(car);
             }
         }
@@ -123,9 +127,9 @@ public class Main {
 
     private static void displayAllUsers(UserService userService) {
         System.out.println("Displaying all users");
-        User[] users = userService.getUsers();
+        List<User> users = userService.getUsers();
         if(users != null) {
-            for (User user : users) {
+            for (User user: users ) {
                 System.out.println(user);
             }
         }
