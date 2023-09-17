@@ -1,4 +1,4 @@
-package utils;
+package com.ricsanfre.utils;
 
 public class FieldValidator {
     public static boolean isEmptyOrBlank(String s) {

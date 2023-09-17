@@ -1,11 +1,12 @@
-import booking.CarBooking;
-import booking.CarBookingDAO;
-import booking.CarBookingService;
-import car.*;
-import user.*;
+package com.ricsanfre.cli;
+
+import com.ricsanfre.cli.booking.CarBooking;
+import com.ricsanfre.cli.booking.CarBookingDAO;
+import com.ricsanfre.cli.booking.CarBookingService;
+import com.ricsanfre.cli.car.*;
+import com.ricsanfre.cli.user.*;
 
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Scanner;
 
 public class Main {
@@ -21,7 +22,7 @@ public class Main {
         CarBookingService carBookingService = new CarBookingService(carBookingDAO, carService);
 
         Scanner cliScanner = new Scanner(System.in);
-        // Main loop cli options
+        // com.ricsanfre.cli.Main loop cli options
         boolean keepLooping = true;
         while (keepLooping) {
             try {
@@ -58,12 +59,11 @@ public class Main {
             if (carBookings == null) {
                 System.out.println("No Bookings found!");
             } else {
-                ListIterator<CarBooking> iterator = carBookings.listIterator();
-                while(iterator.hasNext()) {
-                    System.out.println(iterator.next());
+                for (CarBooking carBooking: carBookings) {
+                    System.out.println(carBooking);
                 }
             }
-        } catch (UserNotFoundException  e) {
+        } catch (UserNotFoundException e) {
             System.out.println("User Id not found!");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -76,9 +76,8 @@ public class Main {
         if (carBookings == null) {
             System.out.println("No Bookings found!");
         } else {
-            ListIterator<CarBooking> iterator = carBookings.listIterator();
-            while(iterator.hasNext()) {
-                System.out.println(iterator.next());
+            for (CarBooking carBooking: carBookings) {
+                System.out.println(carBooking);
             }
         }
     }

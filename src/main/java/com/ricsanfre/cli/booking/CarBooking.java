@@ -1,7 +1,7 @@
-package booking;
+package com.ricsanfre.cli.booking;
 
-import car.Car;
-import user.User;
+import com.ricsanfre.cli.car.Car;
+import com.ricsanfre.cli.user.User;
 
 import java.time.LocalDateTime;
 import java.util.Objects;

@@ -1,4 +1,4 @@
-package user;
+package com.ricsanfre.cli.user;
 
 import com.github.javafaker.Faker;
 

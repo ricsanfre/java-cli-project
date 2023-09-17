@@ -1,10 +1,10 @@
-package booking;
+package com.ricsanfre.cli.booking;
 
-import car.Car;
-import car.CarEngineType;
-import car.CarNotFoundException;
-import car.CarService;
-import user.User;
+import com.ricsanfre.cli.car.Car;
+import com.ricsanfre.cli.car.CarEngineType;
+import com.ricsanfre.cli.car.CarNotFoundException;
+import com.ricsanfre.cli.car.CarService;
+import com.ricsanfre.cli.user.User;
 
 import java.time.LocalDateTime;
 import java.util.*;

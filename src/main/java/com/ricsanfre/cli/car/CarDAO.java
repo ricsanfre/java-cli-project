@@ -1,4 +1,4 @@
-package car;
+package com.ricsanfre.cli.car;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

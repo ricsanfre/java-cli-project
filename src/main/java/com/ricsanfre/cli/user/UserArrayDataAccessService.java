@@ -1,4 +1,4 @@
-package user;
+package com.ricsanfre.cli.user;
 
 import java.util.ArrayList;
 import java.util.UUID;
