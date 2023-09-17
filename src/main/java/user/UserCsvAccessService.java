@@ -11,7 +11,7 @@ public class UserCsvAccessService implements UserDAO {
     public List<User> getUsers() {
         List<User> users = new ArrayList<>();
         // Load users from CSV file
-        File file = new File("src/users.csv");
+        File file = new File(getClass().getClassLoader().getResource("users.csv").getPath());
 
         Scanner scanner = null;
         try {
