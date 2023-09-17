@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-public class UserCsvAccessService implements UserDAO {
+public class UserCsvDataAccessService implements UserDAO {
 
     @Override
     public List<User> getUsers() {

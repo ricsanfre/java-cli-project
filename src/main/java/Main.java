@@ -13,7 +13,8 @@ public class Main {
     public static void main(String[] args) {
         // Creating Objects and dependency injection
         CarBookingDAO carBookingDAO = new CarBookingDAO();
-        UserDAO userDAO = new UserCsvAccessService();
+        // UserDAO userDAO = new UserCsvDataAccessService();
+        UserDAO userDAO = new UserFakerDataAccessService();
         CarDAO carDAO = new CarDAO();
         UserService userService = new UserService(userDAO);
         CarService carService = new CarService(carDAO);
