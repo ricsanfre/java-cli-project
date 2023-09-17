@@ -18,7 +18,7 @@ public class UserCsvDataAccessService implements UserDAO {
             scanner = new Scanner(file);
             while (scanner.hasNext()) {
                 String[] fields = scanner.nextLine().split(",");
-                users.add(new User(UUID.fromString(fields[0]),fields[1]));
+                users.add(new User(UUID.fromString(fields[0]),fields[1].trim()));
             }
         } catch (FileNotFoundException e) {
             System.out.println("Users CSV file does not exists!!");
